@@ -32,6 +32,8 @@ while valid == False :
                 decNo = BL[i]
                 valid = True
 
+#LOGIC
+
 for i in range(l):
     if (BL[i] == decNo):
         continue
