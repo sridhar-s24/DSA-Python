@@ -20,53 +20,49 @@ def push(data):
         st2.append(data)
     else:
         st2.append(st2[top-1]) 
-        
-#     print ('Element ', mini, 'added to the duplicate stack...')
-       
     
 def pop():
-    global top, st, st2, size
+    global top, st
     if(top == -1):
         print ('Underflow')
         return
     ele = st[top]
     top -= 1
     print ('Element ', ele, 'removed from the original stack...')
-
-#   ele2 = st2[top]
-#   print ('Element ', ele2, 'removed from the duplicate stack...')  
     
 def displayStack():
-    global top, st, size
+    global top, st
     if(top == -1):
-        print ('List is empty')
+        print ('Stack is empty')
         return
     print ('The original stack is: ')
     for i in range (top,-1,-1):
         print (st[i])
 
 def getMinimum():
-    global st2
+    global top, st2
+    if(top == -1):
+        print ('Stack is empty')
+        return
     print ('The minimum element from the stack is: ', st2[top])
-    
-        
-    
 
-push(10)
-push(5)
-push(20)
-push(3)
-push(2)
-displayStack()
-push(60)
-pop()
-displayStack()
-getMinimum()
-pop()
-displayStack()
-getMinimum()
-pop()
-displayStack()
-getMinimum()
-displayStack()
-getMinimum()
+switcher = { 
+        '1': push, 
+        '2': pop, 
+        '3': displayStack,
+        '4': getMinimum,
+       } 
+
+flag = '1'
+
+while flag != '-1':
+    case = input('Enter\n1: To Push\n2: To Pop\n3: To display the stack\n4: To get minimum element\n')
+    func = switcher.get(case)
+    if case == '1':
+        func(eval(input('Enter element to be pushed:  ')))
+    elif case == '2' or case == '3' or case == '4':
+        func()
+    else:
+        print ('Invalid choice')
+        continue
+    flag = input('Press ANY KEY to Continue or -1 to Exit ')
